@@ -1,4 +1,4 @@
-v {xschem version=3.1.0 file_version=1.2 
+v {xschem version=3.4.4 file_version=1.2
 }
 G {}
 K {}
@@ -65,7 +65,7 @@ plot phase_val
 wrdata /foss/designs/LDO_Design/data/data_OTAphase_val.dat phase_val
 meas ac phase_margin find phase_margin_val when vdb(out)=0
 meas ac crossover_freq WHEN vdb(out)=0
-op
+
 
 *wrdata /foss/designs/IPD413_2023_HW1_git/data_nmos_gmvgs_VDSp9.dat gmn
 
@@ -81,6 +81,7 @@ op
 *let id8  = @m.x1.xm8.msky130_fd_pr__nfet_01v8_lvt[id]
 
 let gm1  = @m.x1.xm1.m0[gm]
+print gm1
 *let gm2  = @m.x1.xm2.msky130_fd_pr__nfet_01v8_lvt[gm]
 *let gm3  = @m.x1.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
 *let gm4  = @m.x1.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -90,6 +91,7 @@ let gm5  = @m.x1.xm5.m0[gm]
 *let gm8  = @m.x1.xm8.msky130_fd_pr__nfet_01v8_lvt[gm]
 
 let gds2 = @m.x1.xm2.m0[gds]
+*plot gds
 let gds4 = @m.x1.xm4.m0[gds]
 let gds5 = @m.x1.xm5.m0[gds]
 let gds6 = @m.x1.xm6.m0[gds]
@@ -104,11 +106,11 @@ let gds6 = @m.x1.xm6.m0[gds]
 let cgs5  = @m.x1.xm5.m0[cgg]
 
 *@m.xm1.m0[id]
-print v(inp)
-print v(inm)
-print v(out)
+*print v(inp)
+*print v(inm)
+*print v(out)
 let v_offset = v(inp)-v(inm)
-print v_offset
+*print v_offset
 
 print cgs5
 *print id1
@@ -132,7 +134,7 @@ print gm5/(gds5+gds6)
 
 .endc
 "}
-C {devices/vsource.sym} -660 -700 0 0 {name=V1 value=1.8}
+C {devices/vsource.sym} -660 -700 0 0 {name=V1 value=3.3}
 C {devices/gnd.sym} -660 -650 0 0 {name=l3 lab=GND}
 C {devices/lab_pin.sym} -660 -750 0 0 {name=l4 sig_type=std_logic lab=V3V3
 }
@@ -160,7 +162,7 @@ device="ceramic capacitor"}
 C {devices/gnd.sym} -80 -550 0 0 {name=l6 lab=GND}
 C {devices/lab_pin.sym} -60 -650 0 1 {name=l7 sig_type=std_logic lab=INM
 }
-C {devices/isource.sym} -840 -690 2 0 {name=I1 value=1.5u
+C {devices/isource.sym} -840 -690 2 0 {name=I1 value=3u
 }
 C {devices/gnd.sym} -840 -640 0 0 {name=l10 lab=GND}
 C {devices/lab_pin.sym} -540 -850 0 0 {name=l2 sig_type=std_logic lab=INM

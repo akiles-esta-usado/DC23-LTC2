@@ -5,28 +5,30 @@ K {}
 V {}
 S {}
 E {}
-N 1090 -360 1140 -360 {
+N -310 -230 -260 -230 {
 lab=g1}
-N 1180 -290 1180 -230 {
+N -220 -160 -220 -100 {
 lab=d1}
-N 1180 -360 1260 -360 {
+N -220 -230 -140 -230 {
 lab=d1}
-N 1180 -530 1180 -400 {
-lab=vsup}
-N 1180 -530 1330 -530 {
-lab=vsup}
-N 1180 -330 1180 -290 {
+N -140 -230 -140 -160 {
 lab=d1}
-N 1180 -400 1180 -390 {
+N -220 -160 -140 -160 {
+lab=d1}
+N -220 -400 -220 -270 {
 lab=vsup}
-N 1260 -410 1260 -360 {}
-N 1180 -410 1260 -410 {}
-C {devices/code_shown.sym} 1390 -570 0 0 {name=NGSPICE
+N -220 -400 -70 -400 {
+lab=vsup}
+N -220 -200 -220 -160 {
+lab=d1}
+N -220 -270 -220 -260 {
+lab=vsup}
+C {devices/code_shown.sym} -10 -440 0 0 {name=NGSPICE
 only_toplevel=true
 value="
 vsup vsup 0 dc=3.3
 vsg vsup g1 dc=2
-vsd vsup d1 dc=3.3
+vsd vsup d1 dc=2
 
 .control
 save all
@@ -65,24 +67,10 @@ wrdata foss/designs/LDO_Design/data/data_id_vov_M0.dat vov2
 
 .endc
 " }
-C {devices/ipin.sym} 1090 -360 0 0 {name=p1 lab=g1}
-C {devices/iopin.sym} 1180 -230 0 0 {name=p2 lab=d1}
-C {devices/iopin.sym} 1330 -530 0 0 {name=p3 lab=vsup}
-C {symbols/pfet_03v3.sym} 1160 -360 0 0 {name=M1
-L=0.7u
-W=5u
-nf=5
-m=1
-ad="'int((nf+1)/2) * W/nf * 0.18u'"
-pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
-as="'int((nf+2)/2) * W/nf * 0.18u'"
-ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
-nrd="'0.18u / W'" nrs="'0.18u / W'"
-sa=0 sb=0 sd=0
-model=pfet_03v3
-spiceprefix=X
-}
-C {devices/code.sym} 1018.75 -531.875 0 0 {name=MODELS
+C {devices/ipin.sym} -310 -230 0 0 {name=p1 lab=g1}
+C {devices/iopin.sym} -220 -100 0 0 {name=p2 lab=d1}
+C {devices/iopin.sym} -70 -400 0 0 {name=p3 lab=vsup}
+C {devices/code.sym} -381.25 -401.875 0 0 {name=MODELS
 only_toplevel=true
 place=header
 format="tcleval( @value )"
@@ -97,3 +85,17 @@ value="
 .lib $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/sm141064.ngspice moscap_typical
 
 "}
+C {symbols/nfet_03v3.sym} -240 -230 0 0 {name=M1
+L=0.5u
+W=5u
+nf=5
+m=1
+ad="'int((nf+1)/2) * W/nf * 0.18u'"
+pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
+as="'int((nf+2)/2) * W/nf * 0.18u'"
+ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
+nrd="'0.18u / W'" nrs="'0.18u / W'"
+sa=0 sb=0 sd=0
+model=nfet_03v3
+spiceprefix=X
+}

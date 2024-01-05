@@ -25,14 +25,14 @@ N 470 -680 600 -680 {
 lab=vin}
 N 470 -680 470 -550 {
 lab=vin}
-C {devices/isource.sym} 290 -330 2 0 {name=I1 value=1.5u
+C {devices/isource.sym} 290 -330 2 0 {name=I1 value=0.1u
 }
 C {devices/gnd.sym} 290 -280 0 0 {name=l10 lab=GND}
 C {devices/gnd.sym} 470 -410 0 0 {name=l1 lab=GND}
 C {devices/opin.sym} 620 -480 0 0 {name=p3 lab=out
 }
 C {devices/gnd.sym} 180 -280 0 0 {name=l2 lab=GND}
-C {devices/vsource.sym} 180 -330 0 0 {name=V1 value=1.2}
+C {devices/vsource.sym} 180 -330 0 0 {name=V1 value=1.25}
 C {devices/code.sym} 188.75 -791.875 0 0 {name=MODELS
 only_toplevel=true
 place=header
@@ -45,16 +45,16 @@ value="
 .lib $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/sm141064.ngspice res_typical
 "}
 C {devices/gnd.sym} 600 -580 0 0 {name=l9 lab=GND}
-C {devices/vsource.sym} 600 -630 0 0 {name=V3 value=4}
+C {devices/vsource.sym} 600 -630 0 0 {name=V3 value=3.5}
 C {devices/code_shown.sym} -541.25 -981.875 0 0 {name=NGSPICE
 only_toplevel=true
 format="tcleval( @value )"
 spice_ignore=false
 value="
-.param R=330
+.param R=33000
 R10 out 0 \{R\}
 *IL out 0 PWL(0 0.1m 10u 0.1m 20u 10m 30u 10m)
-CL out 0 10u
+CL out 0 100p
 .options savecurrents
 
 .nodeset v(out)=0
@@ -63,7 +63,7 @@ CL out 0 10u
 *TRANSIENT
 .control
 save all
-tran 1ns 10us
+tran 1ns 100us
 plot v(out) v(ref) v(pos) v(vin)
 plot v(op_out)
 plot v(out)

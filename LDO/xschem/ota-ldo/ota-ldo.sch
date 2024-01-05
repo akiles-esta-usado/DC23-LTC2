@@ -63,12 +63,6 @@ N 590 -110 1030 -110 {
 lab=agnd}
 N 690 -400 930 -400 {
 lab=#net2}
-N 840 -320 860 -320 {
-lab=#net2}
-N 840 -400 840 -320 {
-lab=#net2}
-N 920 -320 970 -320 {
-lab=out}
 N 970 -370 970 -320 {
 lab=out}
 N 970 -320 970 -270 {
@@ -111,6 +105,14 @@ N 1050 -450 1050 -400 {
 lab=avdd}
 N 970 -450 1050 -450 {
 lab=avdd}
+N 960 -320 970 -320 {
+lab=out}
+N 880 -320 900 -320 {
+lab=#net4}
+N 810 -320 820 -320 {
+lab=#net2}
+N 810 -400 810 -320 {
+lab=#net2}
 C {devices/iopin.sym} 240 -300 3 0 {name=p7 lab=vb}
 C {devices/lab_pin.sym} 120 -170 0 0 {name=l1 sig_type=std_logic lab=vb}
 C {devices/iopin.sym} 520 -530 0 0 {name=p8 lab=avdd}
@@ -121,15 +123,15 @@ C {devices/opin.sym} 1100 -320 0 0 {name=p12 lab=out}
 C {devices/lab_pin.sym} 1070 -320 1 0 {name=l2 sig_type=std_logic lab=out}
 C {devices/lab_pin.sym} 470 -170 0 0 {name=l3 sig_type=std_logic lab=vb}
 C {devices/lab_pin.sym} 930 -240 0 0 {name=l4 sig_type=std_logic lab=vb}
-C {symbols/cap_mim_2p0fF.sym} 890 -320 3 0 {name=C2
+C {symbols/cap_mim_2p0fF.sym} 850 -320 3 0 {name=C2
 W=50e-6
-L=20e-6
-model=cap_mim_1f5fF
+L=50e-6
+model=cap_mim_2f0fF
 spiceprefix=X
 m=1}
 C {symbols/nfet_03v3.sym} 350 -320 0 0 {name=M1
-L=0.3u
-W=10u
+L=0.5u
+W=9u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -142,8 +144,8 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 390 -460 0 1 {name=M3
-L=0.8u
-W=9u
+L=1.5u
+W=1u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -156,8 +158,8 @@ model=pfet_03v3
 spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 710 -320 0 1 {name=M2
-L=0.3u
-W=10u
+L=0.5u
+W=9u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -170,8 +172,8 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 670 -460 0 0 {name=M4
-L=0.8u
-W=9u
+L=1.5u
+W=1u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -184,8 +186,8 @@ model=pfet_03v3
 spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 490 -170 0 0 {name=M7
-L=1u
-W=16u
+L=0.7u
+W=3u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -199,7 +201,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 220 -170 0 0 {name=M8
 L=0.7u
-W=1.66u
+W=3u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -212,8 +214,8 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 950 -400 0 0 {name=M5
-L=0.4u
-W=60u
+L=0.5u
+W=35u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -226,8 +228,8 @@ model=pfet_03v3
 spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 950 -240 0 0 {name=M6
-L=0.5u
-W=60u
+L=0.7u
+W=36.3u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -239,3 +241,8 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
+C {devices/res.sym} 930 -320 3 0 {name=R1
+value=10k
+footprint=1206
+device=resistor
+m=1}
