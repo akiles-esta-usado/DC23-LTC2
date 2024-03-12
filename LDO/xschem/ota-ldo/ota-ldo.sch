@@ -144,8 +144,8 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 390 -460 0 1 {name=M3
-L=1.5u
-W=1u
+L=1u
+W=1.66u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -172,8 +172,8 @@ model=nfet_03v3
 spiceprefix=X
 }
 C {symbols/pfet_03v3.sym} 670 -460 0 0 {name=M4
-L=1.5u
-W=1u
+L=1u
+W=1.66u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -229,7 +229,7 @@ spiceprefix=X
 }
 C {symbols/nfet_03v3.sym} 950 -240 0 0 {name=M6
 L=0.7u
-W=36.3u
+W=36u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"

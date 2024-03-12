@@ -1,4 +1,4 @@
-v {xschem version=3.1.0 file_version=1.2 
+v {xschem version=3.4.4 file_version=1.2
 }
 G {}
 K {}
@@ -64,8 +64,8 @@ C {devices/gnd.sym} 1340 -260 0 0 {name=l3 lab=GND}
 C {symbols/pfet_03v3.sym} 1320 -390 0 0 {name=M1
 L=0.7u
 *W=227.3m
-W=1000u
-nf=11
+W=10u
+nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
 pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"

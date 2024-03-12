@@ -47,13 +47,17 @@ value="
 .lib $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/sm141064.ngspice mimcap_statistical
 .lib $env(PDK_ROOT)/$env(PDK)/libs.tech/ngspice/sm141064.ngspice cap_mim
 
-.options savecurrents
+*.options savecurrents
+.save all
 
 *.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .param CM_VOLTAGE = 0.9
 .param OUTPUT_VOLTAGE = 1
 .control
-save all
+
+*save all
+
+
 ac dec 200 10 1000Meg
 settype decibel out
 plot vdb(out)
@@ -67,11 +71,15 @@ meas ac phase_margin find phase_margin_val when vdb(out)=0
 meas ac crossover_freq WHEN vdb(out)=0
 
 
+let gm1  = @m.x1.xm1.m0[gm]
+print gm1
+
 *wrdata /foss/designs/IPD413_2023_HW1_git/data_nmos_gmvgs_VDSp9.dat gmn
 
 
 
-*let id1  = @m.x1.xm3.m0[gm]
+
+let id1  = @m.x1.xm1.m0[gm]
 *let id2  = @m.x1.xm2.msky130_fd_pr__nfet_01v8_lvt[id]
 *let id3  = @m.x1.xm3.msky130_fd_pr__pfet_01v8_lvt[id]
 *let id4  = @m.x1.xm4.msky130_fd_pr__pfet_01v8_lvt[id]
@@ -80,8 +88,7 @@ meas ac crossover_freq WHEN vdb(out)=0
 *let id7  = @m.x1.xm7.msky130_fd_pr__nfet_01v8_lvt[id]
 *let id8  = @m.x1.xm8.msky130_fd_pr__nfet_01v8_lvt[id]
 
-let gm1  = @m.x1.xm1.m0[gm]
-print gm1
+
 *let gm2  = @m.x1.xm2.msky130_fd_pr__nfet_01v8_lvt[gm]
 *let gm3  = @m.x1.xm3.msky130_fd_pr__pfet_01v8_lvt[gm]
 *let gm4  = @m.x1.xm4.msky130_fd_pr__pfet_01v8_lvt[gm]
@@ -113,7 +120,7 @@ let v_offset = v(inp)-v(inm)
 *print v_offset
 
 print cgs5
-*print id1
+print id1
 *print id2
 *print id5
 *print gm1
@@ -131,6 +138,8 @@ print gm5/(gds5+gds6)
 *print v(vov1)
 *print v(vds1)
 *print v(vdsat1)
+
+write /workspaces/DC23-LTC2/LDO/xschem/ota-ldo/data all
 
 .endc
 "}
