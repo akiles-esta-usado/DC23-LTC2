@@ -103,7 +103,13 @@ N 210 -310 260 -330 {
 lab=ref}
 N 400 -310 410 -310 {
 lab=op_out}
-C {devices/isource.sym} 0 -150 2 0 {name=I1 value=100u
+N 810 -170 810 -150 {
+lab=#net6}
+N 810 -90 810 -70 {
+lab=GND}
+N 810 -270 810 -230 {
+lab=out}
+C {devices/isource.sym} 0 -150 2 0 {name=I1 value=10u
 }
 C {devices/gnd.sym} 0 -100 0 0 {name=l10 lab=GND}
 C {devices/gnd.sym} 480 130 0 0 {name=l1 lab=GND}
@@ -167,28 +173,28 @@ value="
 .param R=33
 R10 out 0 \{R\}
 IL out 0 PWL(0 0.1m 10u 0.1m 20u 10m 30u 10m)
-CL out 0 10u
+*CL out 0 10u
 
-.param iref = 100u
+.param iref = 10u
 .param vdd  = 5
 .param vss  = 0.0
-.param vcm  = 3
+.param vcm  = 1.25
 .param vac  = 60m
-.param w857 = 10u
+.param w857 = 5u
 .param l857 = 1u
 .param m857 = 1
-.param wpar = 30u
-.param lpar = 4u
-.param mpar = 4
-.param w34  = 20u
+.param wpar = 10u
+.param lpar = 1u
+.param mpar = 1
+.param w34  = 10u
 .param l34  = 1u
-.param m34  = 3
+.param m34  = 1
 .param w6   = 100u
-.param l6   = 0.8u
-.param m6   = 2
+.param l6   = 1u
+.param m6   = 1
 
-.param m5   = 7
-.param m7   = 10
+.param m5   = 1
+.param m7   = 5
 
 
 Vs vin 0 5
@@ -255,7 +261,7 @@ meas TRAN V_ldo_100u FIND v(out) AT=5u
 meas TRAN V_ldo_10m FIND v(out) AT=100u
 let load_reg= V_ldo_100u-V_ldo_10m
 let load_current =(-1*i(Vs)-131.8e-6)
-print load_reg
+print load_reg/9.9
 plot i(v2) v(out)-3.3
 .endc
 
@@ -269,3 +275,14 @@ tran 0.1u 100u
 plot v(vin) v(out)
 .endc
 "}
+C {devices/capa.sym} 810 -120 0 0 {name=C1
+m=1
+value=10u
+footprint=1206
+device="ceramic capacitor"}
+C {devices/res.sym} 810 -200 2 0 {name=R4
+value=2
+footprint=1206
+device=resistor
+m=1}
+C {devices/gnd.sym} 810 -70 0 0 {name=l7 lab=GND}

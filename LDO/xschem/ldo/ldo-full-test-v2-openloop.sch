@@ -95,7 +95,13 @@ N -150 -180 -100 -200 {
 lab=ref}
 N -150 -210 -100 -160 {
 lab=#net4}
-C {devices/isource.sym} -60 -70 2 0 {name=I1 value=100u
+N 450 -20 450 -0 {
+lab=#net8}
+N 450 -140 450 -80 {
+lab=out}
+N 450 60 450 80 {
+lab=GND}
+C {devices/isource.sym} -60 -70 2 0 {name=I1 value=10u
 }
 C {devices/gnd.sym} 120 260 0 0 {name=l1 lab=GND}
 C {devices/gnd.sym} -470 40 0 0 {name=l2 lab=GND}
@@ -163,31 +169,31 @@ C {devices/code_shown.sym} -1301.25 -691.875 0 0 {name=NGSPICE
 only_toplevel=true
 spice_ignore=false
 value="
-.param R=33k
+.param R=66k
 R10 out 0 \{R\}
 *IL out 0 PWL(0 0.1m 10u 0.1m 20u 10m 30u 10m)
-CL out 0 10u
+*CL out 0 10u
 
-.param iref = 100u
+.param iref = 10u
 .param vdd  = 5
 .param vss  = 0.0
-.param vcm  = 3
+.param vcm  = 1.25
 .param vac  = 60m
-.param w857 = 10u
+.param w857 = 5u
 .param l857 = 1u
 .param m857 = 1
-.param wpar = 30u
-.param lpar = 4u
-.param mpar = 4
-.param w34  = 20u
+.param wpar = 10u
+.param lpar = 1u
+.param mpar = 1
+.param w34  = 10u
 .param l34  = 1u
-.param m34  = 3
+.param m34  = 1
 .param w6   = 100u
-.param l6   = 0.8u
-.param m6   = 2
+.param l6   = 1u
+.param m6   = 1
 
-.param m5   = 7
-.param m7   = 10
+.param m5   = 1
+.param m7   = 5
 
 Vs vin 0 5
 
@@ -258,3 +264,14 @@ print v(out)
 
 "}
 C {devices/lab_pin.sym} -60 -20 3 0 {name=l6 sig_type=std_logic lab=vin}
+C {devices/capa.sym} 450 30 0 0 {name=C1
+m=1
+value=10u
+footprint=1206
+device="ceramic capacitor"}
+C {devices/res.sym} 450 -50 2 0 {name=R4
+value=2
+footprint=1206
+device=resistor
+m=1}
+C {devices/gnd.sym} 450 80 0 0 {name=l7 lab=GND}
